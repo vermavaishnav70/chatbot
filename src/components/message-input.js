@@ -3,6 +3,10 @@ import { useState } from "react";
 export function MessageInput({ setMessages }) {
   const [value, setValue] = useState("");
 
+  const handleSend = (message) => {
+    setMessages((messages) => [...messages, { from: "user", message }]);
+    setValue("");
+  };
   return (
     <div
       style={{
@@ -20,7 +24,12 @@ export function MessageInput({ setMessages }) {
         type="text"
         placeholder="type message"
       />
-      <button   onClick={() => setMessages((prev) => [...prev, { from: "user", message: value }])} style={{ width: "100px", height: "70px" }}>send</button>
+      <button
+        onClick={() => handleSend(value)}
+        style={{ width: "100px", height: "70px" }}
+      >
+        send
+      </button>
     </div>
   );
 }
